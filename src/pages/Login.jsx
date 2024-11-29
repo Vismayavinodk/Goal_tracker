@@ -3,7 +3,7 @@ import { useState } from "react"
 import { ApiRoutes, Host } from "../constants/constants";
 import {useNavigate} from "react-router-dom"
 
-const Login = () => {
+const Login = ({setemail}) => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -19,7 +19,8 @@ const Login = () => {
                 console.log(response);
                 if (response.status == 200) {
                     setErrMsg("Valid Credentials");
-                    navigate('/goals');
+                    setemail(email);
+                    navigate('/goals', {state: { email } });
                     
             setShowErr(true);
 
